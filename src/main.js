@@ -10,6 +10,7 @@ import StyleComponent from './components/StyleComponent.vue';
 import ConditionalComponent from './components/ConditionalComponent.vue'
 import ListRendering from './components/ListRendering.vue';
 import EventHandling from './components/EventHandling.vue';
+import FormInput from './components/FormInput.vue';
 
 const app = createApp(App);
 app.component('Counter', Counter);
@@ -20,5 +21,6 @@ app.component('StyleComponent', StyleComponent);
 app.component('ConditionalComponent', ConditionalComponent);
 app.component('ListRendering', ListRendering);
 app.component('EventHandling', EventHandling);
+app.component('FormInput', FormInput);
 app.mount('#app');
 

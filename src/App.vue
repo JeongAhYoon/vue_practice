@@ -1,4 +1,3 @@
-
 <template>
   <div>
 <!-- <counter></counter>
@@ -9,6 +8,7 @@
 <ConditionalComponent />
 <ListRendering /> -->
 <EventHandling />
+<FormInput />
 <div style="margin-top: 15rem"></div>
   </div>
 </template>
