@@ -1,3 +1,4 @@
+
 <template>
   <div>
 <counter></counter>
@@ -6,6 +7,7 @@
 <ClassComponent class="foo bar"/>
 <StyleComponent class="foo bar"/>
 <ConditionalComponent />
+<ListRendering />
 <div style="margin-top: 15rem"></div>
   </div>
 </template>
