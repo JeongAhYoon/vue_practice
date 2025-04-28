@@ -1,10 +1,11 @@
 <template>
   <div class="text-center">
-    <div>Counter Component</div>
+    <div>{{ counterTitle }}</div>
     <div>
       <button @click.prevent="decreaseCounter()">-</button>
-      <span>{{ counter }}</span>
+      <span>{{ counterData.count }}</span>
       <button @click.prevent="increaseCounter()">+</button>
+      <div><input type="text" v-model="counterTitle" /></div>
     </div>
   </div>
 </template>
@@ -49,14 +50,16 @@ export default {
 </script> -->
 
 <script setup>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 const counter = ref(100);
-const increaseCounter = () =>
-  counter.value++;
+const counterTitle = ref("Counter Title");
+const counterData = reactive({
+  count: 0,
+  title:'Counter Title'
+});
+const increaseCounter = () => counterData.count++;
 
-const decreaseCounter = () =>
-  counter.value--;
-
+const decreaseCounter = () => counterData.count--;
 </script>
 
 <style scoped>
