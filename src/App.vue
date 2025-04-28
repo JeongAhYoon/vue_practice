@@ -1,13 +1,14 @@
 
 <template>
   <div>
-<counter></counter>
+<!-- <counter></counter>
 <TemplateSyntax />
 <ComputedComponent />
 <ClassComponent class="foo bar"/>
 <StyleComponent class="foo bar"/>
 <ConditionalComponent />
-<ListRendering />
+<ListRendering /> -->
+<EventHandling />
 <div style="margin-top: 15rem"></div>
   </div>
 </template>
