@@ -1,4 +1,3 @@
-
 <template>
   <div>
 <!-- <counter></counter>
@@ -11,6 +10,7 @@
 <EventHandling />
 <FormInput />
 <WatchComponent />
+<WatchEffectComponent />
 <div style="margin-top: 15rem"></div>
   </div>
 </template>

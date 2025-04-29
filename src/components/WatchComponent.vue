@@ -53,10 +53,11 @@ const obj1 = reactive({
 // });
 watch(() => obj1.count, (newCount, oldCount) => {
 console.log(`new count value is ${newCount.value} and previous number is ${oldCount.value}`)
-}, {deep:true});
+}, {deep:true}); // object를 value로 가지는 property의 변화를 감지하기 위해 이 옵션을 씀
+
 watch(() => obj.count, (newCount, oldCount) => {
 console.log(`new count value is ${newCount} and previous number is ${oldCount}`)
-},{immediate: true});
+},{immediate: true}); // code run 하기전에 한번 바로 작동하고 보여줌줌
 
 // watch(
 //   () => x.value + y.value,
