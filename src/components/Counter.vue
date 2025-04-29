@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <div>{{ counterTitle }}</div>
+    <div id="counterTitle">{{ counterTitle }}</div>
     <div>
       <button @click.prevent="decreaseCounter()">-</button>
       <span>{{ counterData.count }}</span>
@@ -51,7 +51,7 @@ export default {
 </script> -->
 
 <script setup>
-import { reactive, ref, computed } from "vue";
+import { reactive, ref, computed, onBeforeMount, onMounted, onBeforeUnmount, onUnmounted, onBeforeUpdate, onUpdated } from "vue";
 const counter = ref(100);
 const counterTitle = ref("Counter Title");
 const counterData = reactive({
@@ -61,6 +61,24 @@ const counterData = reactive({
 const increaseCounter = () => counterData.count++;
 
 const decreaseCounter = () => counterData.count--;
+
+onBeforeMount(() => {
+    console.log(document.getElementById('counterTitle'));
+    console.log('before mounted'); // component setup 후 Dom이 만들어 지기 전에 불려짐.
+});
+
+onMounted(() => {
+    console.log(document.getElementById('counterTitle'));
+    console.log('mounted'); 
+});
+
+onBeforeUnmount(() => {
+    console.log('on before unMounted'); 
+});
+
+onUnmounted(() => {
+    console.log('on unmounted');
+})
 
 const oddOrEven = computed(() => {return counterData.count % 2 == 0 ? 'Even' : 'Odd'} )
 </script>
