@@ -9,10 +9,11 @@
 
   <div>x: <input type="text" v-model="x" /></div>
   <div>y: <input type="text" v-model="y" /></div>
+  <div> Count: <input type="text" v-model="obj1.count.value"/></div>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, reactive } from "vue";
 const question = ref("");
 const answer = ref("Question generally contains ?");
 const responseData = ref("");
@@ -32,6 +33,31 @@ watch(question, async (newQuesion, oldQuestion) => {
 });
 const x = ref(0);
 const y = ref(0);
+const obj = reactive({
+    count: 0,
+    name: 'Kelly'
+});
+const obj1 = reactive({
+    count: {value: 0, name: ''}
+});
+// watch(() => obj.count, (newCount) => {
+// console.log(`new count value is ${newCount}`)
+// });
+
+// watch(obj, (obj) => {
+// console.log(`new count value is ${obj.count}`)
+// });
+
+// watch(() => obj1.count.value, (newCount, oldCount) => {
+// console.log(`new count value is ${newCount} and previous number is ${oldCount}`)
+// });
+watch(() => obj1.count, (newCount, oldCount) => {
+console.log(`new count value is ${newCount.value} and previous number is ${oldCount.value}`)
+}, {deep:true});
+watch(() => obj.count, (newCount, oldCount) => {
+console.log(`new count value is ${newCount} and previous number is ${oldCount}`)
+},{immediate: true});
+
 // watch(
 //   () => x.value + y.value,
 //   (sum) => {
