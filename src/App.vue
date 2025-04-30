@@ -1,6 +1,6 @@
 <template>
   <div>
-    <counter v-if="showCounter" ref="counterRef"></counter>
+    <counter-component v-if="showCounter" ref="counterRef"></counter-component>
     <div
       :style="{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }"
     >
@@ -23,6 +23,16 @@
 </template>
 
 <script setup>
+// setup 사용하지 않으면 이런식으로 하고 쓰도록 한다..
+// export default {
+//   components:{
+//     Counter
+//   }, 
+//     setup() {
+
+//     }
+// }
+import CounterComponent from './components/Counter.vue' //change it locally
 import { onBeforeUpdate, onMounted, onUpdated, ref } from "vue";
 const showCounter = ref(true);
 const counterRef = ref(null);
