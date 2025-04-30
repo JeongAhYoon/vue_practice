@@ -16,7 +16,7 @@ import WatchEffectComponent from './components/WatchEffectComponent.vue';
 //globally.. access anywhere in the app
 //we can chain
 const app = createApp(App);
-//app.component('Counter', Counter).component('TemplateSyntax', TemplateSyntax);
+app.component('TemplateSyntax', TemplateSyntax);
 app.component('ComputedComponent', ComputedComponent);
 app.component('ClassComponent', ClassComponent);
 app.component('StyleComponent', StyleComponent);
