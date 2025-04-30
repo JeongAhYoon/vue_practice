@@ -1,6 +1,6 @@
 <template>
   <div>
-    <counter v-if="showCounter"></counter>
+    <counter v-if="showCounter" ref="counterRef"></counter>
     <div
       :style="{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }"
     >
@@ -23,13 +23,17 @@
 </template>
 
 <script setup>
-import { onBeforeUpdate, onUpdated, ref } from "vue";
+import { onBeforeUpdate, onMounted, onUpdated, ref } from "vue";
 const showCounter = ref(true);
-
+const counterRef = ref(null);
 // onBeforeUpdate(() => {
 //   console.log("before Update");
 // });
 // onUpdated(() => {
 //   console.log("on Update");
 // });
+onMounted(() => {
+  console.log(counterRef.value.increaseCounter());
+  console.log(counterRef.value.increaseCounter());
+})
 </script>
