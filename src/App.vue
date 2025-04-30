@@ -18,6 +18,7 @@
 <FormInput />
 <WatchComponent />
 <WatchEffectComponent /> -->
+<SinglePost v-bind="postDetails" />
     <div style="margin-top: 15rem"></div>
   </div>
 </template>
@@ -34,8 +35,14 @@
 // }
 import CounterComponent from './components/Counter.vue' //change it locally
 import { onBeforeUpdate, onMounted, onUpdated, ref } from "vue";
+import SinglePost from './components/SinglePost.vue';
 const showCounter = ref(true);
 const counterRef = ref(null);
+const postDetails = {
+  title: 'Ernest',
+  age: 49
+};
+const postTitle = ref('Claire is cute')
 // onBeforeUpdate(() => {
 //   console.log("before Update");
 // });
