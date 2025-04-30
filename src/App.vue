@@ -18,7 +18,8 @@
 <FormInput />
 <WatchComponent />
 <WatchEffectComponent /> -->
-<SinglePost v-bind="postDetails" />
+<SinglePost v-bind="postDetails" :post="post"/>
+<div>Parent: {{ post.name }}</div>
     <div style="margin-top: 15rem"></div>
   </div>
 </template>
@@ -34,7 +35,7 @@
 //     }
 // }
 import CounterComponent from './components/Counter.vue' //change it locally
-import { onBeforeUpdate, onMounted, onUpdated, ref } from "vue";
+import { onBeforeUpdate, onMounted, onUpdated, ref, reactive } from "vue";
 import SinglePost from './components/SinglePost.vue';
 const showCounter = ref(true);
 const counterRef = ref(null);
@@ -42,6 +43,11 @@ const postDetails = {
   title: 'Ernest',
   age: 49
 };
+
+const post = reactive({
+  id: 1,
+  name: "randomName"
+});
 const postTitle = ref('Claire is cute')
 // onBeforeUpdate(() => {
 //   console.log("before Update");
