@@ -1,5 +1,6 @@
 <template>
   <div>
+    <MyButton class="large" style="color: green" @click="onParentClick" />
     <UserName v-model:firstName="firstName" v-model:lastName="lastName"/>
     <div> {{firstName}} {{lastName}}</div>
     <!-- <CustomInput :searchText="searchText" @updateText="$event => searchText = $event"/> -->
@@ -51,6 +52,7 @@ import PropsValidation from './components/PropsValidation.vue';
 import PostComponent from './components/PostComponent.vue';
 import CustomInput from './components/CustomInput.vue';
 import UserName from './components/UserName.vue';
+import MyButton from './components/MyButton.vue';
 const firstName = ref("Kelly");
 const lastName = ref("Yoon");
 const showCounter = ref(true);
@@ -68,6 +70,10 @@ const post = reactive({
   id: 1,
   name: "randomName"
 });
+
+const onParentClick = () => {
+  console.log('parent click');
+};
 const updateTitle = () => {
   post.name = 'changed from parent';
 }
