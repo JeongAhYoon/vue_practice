@@ -10,11 +10,13 @@ const posts = ref([
     {id : 2, title: 'Post 2'},
     {id : 3, title: 'Post 3'},
 ]);
-const updatePost = (id) => {
+const updatePost = (id, value) => {
+    console.log(value);
     // const ps= posts.map(post => post.id === id ? );
     posts.value = posts.value.map(post => {
         if(post.id === id) return {...post, title: 'Post Is Updated'};
         return post;
     });
+   
 };
 </script>
