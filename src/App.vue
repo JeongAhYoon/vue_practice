@@ -1,8 +1,10 @@
 <template>
   <div>
+    <UserName v-model:firstName="firstName" v-model:lastName="lastName"/>
+    <div> {{firstName}} {{lastName}}</div>
     <!-- <CustomInput :searchText="searchText" @updateText="$event => searchText = $event"/> -->
       <!-- <CustomInput :modelValue="searchText" @update:modelValue="newValue => searchText = newValue"/>  -->
-      <CustomInput v-model="searchText"/> 
+      <CustomInput v-model:title="searchText"/> 
     <div>Parent: {{searchText}} </div>
     <!-- <counter-component v-if="showCounter" ref="counterRef"></counter-component>
     <div
@@ -48,6 +50,9 @@ import SinglePost from './components/SinglePost.vue';
 import PropsValidation from './components/PropsValidation.vue';
 import PostComponent from './components/PostComponent.vue';
 import CustomInput from './components/CustomInput.vue';
+import UserName from './components/UserName.vue';
+const firstName = ref("Kelly");
+const lastName = ref("Yoon");
 const showCounter = ref(true);
 const counterRef = ref(null);
 const postDetails = {

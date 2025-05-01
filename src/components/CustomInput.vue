@@ -1,27 +1,45 @@
 <template>
     <div><h2>CustomInput</h2></div>
-    <!-- <div>
-        <input type="text" :value="searchText" @input = "$event => $emit( 'updateText', $event.target.value)"/>
-    </div> -->
     <div>
-        <input type="text" :value="modelValue" @input = "$event => $emit( 'update:modelValue', $event.target.value)"/>
+        <input type="text" v-model="value" />
+    </div>
+    <div>
+        <!-- <input type="text" :value="title" @input = "$event => $emit( 'update:title', $event.target.value)"/>
+    </div>
+    <div>
+        <input type="text" :value="title" @input = "$event => $emit( 'update:title', $event.target.value)"/> -->
     </div>
 </template>
 
 <script setup>
+import { computed } from 'vue';
+
 // const props = defineProps({
-//     searchText: {
-//         type: String,
-//         required: true
+//     // searchText: {
+//     //     type: String,
+//     //     required: true
+//     // }
+//         modelValue: {
+//         type: String
 //     }
 // });
-
+const value = computed({
+    get() {
+        return props.title;
+    },
+    set(newValue) {
+        emit('update:title', newValue);
+    }
+})
 const props = defineProps({
-    modelValue: {
+    title: {
         type: String,
         required: true
     }
+    // modelValue: {
+    //     type: String
+    // }
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:title', 'update:modelValue']);
 </script>
