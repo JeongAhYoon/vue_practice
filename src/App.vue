@@ -4,7 +4,7 @@
     <div> {{firstName}} {{lastName}}</div>
     <!-- <CustomInput :searchText="searchText" @updateText="$event => searchText = $event"/> -->
       <!-- <CustomInput :modelValue="searchText" @update:modelValue="newValue => searchText = newValue"/>  -->
-      <CustomInput v-model:title="searchText"/> 
+      <CustomInput v-model:title.no-hyphens="searchText"/> 
     <div>Parent: {{searchText}} </div>
     <!-- <counter-component v-if="showCounter" ref="counterRef"></counter-component>
     <div
