@@ -1,8 +1,9 @@
 <template>
   <div>
-    <MyButton class="large" style="color: green" @click="onParentClick" />
+    <BaseButton class="large" style="color: green" @click="onParentClick" />
+    <!-- <MyButton class="large" style="color: green" @click="onParentClick" />
     <UserName v-model:firstName="firstName" v-model:lastName="lastName"/>
-    <div> {{firstName}} {{lastName}}</div>
+    <div> {{firstName}} {{lastName}}</div> -->
     <!-- <CustomInput :searchText="searchText" @updateText="$event => searchText = $event"/> -->
       <!-- <CustomInput :modelValue="searchText" @update:modelValue="newValue => searchText = newValue"/>  -->
       <CustomInput v-model:title.no-hyphens="searchText"/> 
@@ -53,6 +54,7 @@ import PostComponent from './components/PostComponent.vue';
 import CustomInput from './components/CustomInput.vue';
 import UserName from './components/UserName.vue';
 import MyButton from './components/MyButton.vue';
+import BaseButton from './components/baseButton.vue';
 const firstName = ref("Kelly");
 const lastName = ref("Yoon");
 const showCounter = ref(true);
