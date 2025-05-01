@@ -1,13 +1,18 @@
 <template>
   <div>
-    <BaseButton class="large" style="color: green" @click="onParentClick" />
+    <SlotComponent
+      ><span style="color: red">Click</span>
+      <span>Here - {{ searchText }}</span></SlotComponent
+    >
+    <SlotComponent />
+    <!-- <BaseButton class="large" style="color: green" @click="onParentClick" /> -->
     <!-- <MyButton class="large" style="color: green" @click="onParentClick" />
     <UserName v-model:firstName="firstName" v-model:lastName="lastName"/>
     <div> {{firstName}} {{lastName}}</div> -->
     <!-- <CustomInput :searchText="searchText" @updateText="$event => searchText = $event"/> -->
-      <!-- <CustomInput :modelValue="searchText" @update:modelValue="newValue => searchText = newValue"/>  -->
-      <CustomInput v-model:title.no-hyphens="searchText"/> 
-    <div>Parent: {{searchText}} </div>
+    <!-- <CustomInput :modelValue="searchText" @update:modelValue="newValue => searchText = newValue"/>  -->
+    <!-- <CustomInput v-model:title.no-hyphens="searchText"/> 
+    <div>Parent: {{searchText}} </div> -->
     <!-- <counter-component v-if="showCounter" ref="counterRef"></counter-component>
     <div
       :style="{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }"
@@ -26,7 +31,7 @@
 <FormInput />
 <WatchComponent />
 <WatchEffectComponent /> -->
-<!-- <PostComponent></PostComponent>
+    <!-- <PostComponent></PostComponent>
 <SinglePost v-bind="postDetails" :post="post"/>
 <div>Parent: {{ post.name }}</div>
 <PropsValidation :id="10" message="success" :updatedTitle="updateTitle" :person="person" />
@@ -40,50 +45,50 @@
 // export default {
 //   components:{
 //     Counter
-//   }, 
+//   },
 //     setup() {
 
 //     }
 // }
-import CounterComponent from './components/Counter.vue' //change it locally
+import CounterComponent from "./components/Counter.vue"; //change it locally
 import { onBeforeUpdate, onMounted, onUpdated, ref, reactive } from "vue";
-import Person from './components/Person.js'
-import SinglePost from './components/SinglePost.vue';
-import PropsValidation from './components/PropsValidation.vue';
-import PostComponent from './components/PostComponent.vue';
-import CustomInput from './components/CustomInput.vue';
-import UserName from './components/UserName.vue';
-import MyButton from './components/MyButton.vue';
-import BaseButton from './components/baseButton.vue';
+import Person from "./components/Person.js";
+import SinglePost from "./components/SinglePost.vue";
+import PropsValidation from "./components/PropsValidation.vue";
+import PostComponent from "./components/PostComponent.vue";
+import CustomInput from "./components/CustomInput.vue";
+import UserName from "./components/UserName.vue";
+import MyButton from "./components/MyButton.vue";
+import BaseButton from "./components/baseButton.vue";
+import SlotComponent from "./components/SlotComponent.vue";
 const firstName = ref("Kelly");
 const lastName = ref("Yoon");
 const showCounter = ref(true);
 const counterRef = ref(null);
 const postDetails = {
-  title: 'Ernest',
-  age: 49
+  title: "Ernest",
+  age: 49,
 };
-const searchText = ref('Hello Kelly Yoon');
+const searchText = ref("Hello Kelly Yoon");
 // const updateText = (text) => {
 //   searchText.value = text;
 // }
 
 const post = reactive({
   id: 1,
-  name: "randomName"
+  name: "randomName",
 });
 
 const onParentClick = () => {
-  console.log('parent click');
+  console.log("parent click");
 };
 const updateTitle = () => {
-  post.name = 'changed from parent';
-}
+  post.name = "changed from parent";
+};
 
-const person = new Person('Claire', 11);
+const person = new Person("Claire", 11);
 
-
-const postTitle = ref('Claire is cute')
+const postTitle = ref("Claire is cute");
 // onBeforeUpdate(() => {
 //   console.log("before Update");
 // });
@@ -93,5 +98,5 @@ const postTitle = ref('Claire is cute')
 onMounted(() => {
   //console.log(counterRef.value.increaseCounter());
   //console.log(counterRef.value.increaseCounter());
-})
+});
 </script>
