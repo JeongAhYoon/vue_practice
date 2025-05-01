@@ -18,6 +18,7 @@
 <FormInput />
 <WatchComponent />
 <WatchEffectComponent /> -->
+<PostComponent></PostComponent>
 <SinglePost v-bind="postDetails" :post="post"/>
 <div>Parent: {{ post.name }}</div>
 <PropsValidation :id="10" message="success" :updatedTitle="updateTitle" :person="person" />
@@ -41,6 +42,7 @@ import { onBeforeUpdate, onMounted, onUpdated, ref, reactive } from "vue";
 import Person from './components/Person.js'
 import SinglePost from './components/SinglePost.vue';
 import PropsValidation from './components/PropsValidation.vue';
+import PostComponent from './components/PostComponent.vue';
 const showCounter = ref(true);
 const counterRef = ref(null);
 const postDetails = {
