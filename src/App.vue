@@ -1,27 +1,32 @@
 <template>
   <div>
+    <!-- <SlotComponent v-slot="slotProps">
+      <div>Hello World</div>
+      <div>{{slotProps.text}}</div>
+    </SlotComponent> -->
     <!-- <SlotComponent
       ><span style="color: red">Click</span>
       <span>Here - {{ searchText }}</span></SlotComponent
     >
+
     <SlotComponent /> -->
     <SlotComponent>
-      <template v-slot:header>
+      <template v-slot:header="headerProps">
         <h1>Header Content</h1>
+        <div>Message: {{headerProps.message}}</div>
       </template>
-      <!-- <template v-slot:default>
+      <template v-slot:default="mainProps">
         <div>Main Content</div>
-      </template> -->
-      <!-- <template #default>
+        <div>Message: {{mainProps.message}}</div>
+      </template>
+      <!-- <template>
         <div>Main Content</div>
-      </template> -->
-      <div>Main Content</div>
-      <template #footer>
+      </template>
+      <div>Main Content</div> -->
+      <template #footer="footerProps">
         <div>Footer Content</div>
+        <div>Message: {{footerProps.message}}</div>
       </template>
-      <div>Main 2nd Content</div>
-      
-    
     </SlotComponent>
     <!-- <BaseButton class="large" style="color: green" @click="onParentClick" /> -->
     <!-- <MyButton class="large" style="color: green" @click="onParentClick" />
@@ -55,6 +60,7 @@
 <PropsValidation :id="10" message="success" :updatedTitle="updateTitle" :person="person" />
 <PropsValidation :post="post" message="warning" :updatedTitle="updateTitle" :person="person" /> -->
     <div style="margin-top: 15rem"></div>
+   
   </div>
 </template>
 
