@@ -1,10 +1,28 @@
 <template>
   <div>
-    <SlotComponent
+    <!-- <SlotComponent
       ><span style="color: red">Click</span>
       <span>Here - {{ searchText }}</span></SlotComponent
     >
-    <SlotComponent />
+    <SlotComponent /> -->
+    <SlotComponent>
+      <template v-slot:header>
+        <h1>Header Content</h1>
+      </template>
+      <!-- <template v-slot:default>
+        <div>Main Content</div>
+      </template> -->
+      <!-- <template #default>
+        <div>Main Content</div>
+      </template> -->
+      <div>Main Content</div>
+      <template #footer>
+        <div>Footer Content</div>
+      </template>
+      <div>Main 2nd Content</div>
+      
+    
+    </SlotComponent>
     <!-- <BaseButton class="large" style="color: green" @click="onParentClick" /> -->
     <!-- <MyButton class="large" style="color: green" @click="onParentClick" />
     <UserName v-model:firstName="firstName" v-model:lastName="lastName"/>
