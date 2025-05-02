@@ -95,8 +95,21 @@ import UserName from "./components/UserName.vue";
 import MyButton from "./components/MyButton.vue";
 import BaseButton from "./components/baseButton.vue";
 import SlotComponent from "./components/SlotComponent.vue";
+import LoadingComponent from "./components/LoadingComponent.vue";
 // import Posts from "./components/Posts.vue";
-const Posts = defineAsyncComponent(() => import("./components/Posts.vue"));
+const Posts = defineAsyncComponent({
+  // loader: () => import("./components/Posts.vue"),
+  loader: () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(import("./components/Posts.vue"));
+      }, 3000)
+    });
+  },
+  loadingComponent: LoadingComponent,
+  delay: 200,
+  // errorComponent
+});
 const showPost = ref(false);
 
 const message = ref("Hello Kelly Yoon");
