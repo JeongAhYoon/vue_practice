@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Posts >
-      
-    </Posts>
+    <Posts v-if="showPost"> </Posts>
+    <div><button @click.prevent="showPost = !showPost">Show Posts</button></div>
+
     <!-- <SlotComponent v-slot="slotProps">
       <div>Hello World</div>
       <div>{{slotProps.text}}</div>
@@ -14,7 +14,7 @@
 
     <SlotComponent /> -->
     <!-- <SlotComponent> -->
-      <!-- <template v-slot:header="headerProps">
+    <!-- <template v-slot:header="headerProps">
         <h1>Header Content</h1>
         <div>Message: {{headerProps.message}}</div>
       </template>
@@ -22,11 +22,11 @@
         <div>Main Content</div>
         <div>Message: {{mainProps.message}}</div>
       </template> -->
-      <!-- <template>
+    <!-- <template>
         <div>Main Content</div>
       </template>
       <div>Main Content</div> -->
-      <!-- <template #footer="footerProps">
+    <!-- <template #footer="footerProps">
         <div>Footer Content</div>
         <div>Message: {{footerProps.message}}</div>
       </template> -->
@@ -63,7 +63,6 @@
 <PropsValidation :id="10" message="success" :updatedTitle="updateTitle" :person="person" />
 <PropsValidation :post="post" message="warning" :updatedTitle="updateTitle" :person="person" /> -->
     <div style="margin-top: 15rem"></div>
-   
   </div>
 </template>
 
@@ -78,7 +77,15 @@
 //     }
 // }
 import CounterComponent from "./components/Counter.vue"; //change it locally
-import { onBeforeUpdate, onMounted, onUpdated, ref, reactive, provide } from "vue";
+import {
+  onBeforeUpdate,
+  onMounted,
+  onUpdated,
+  ref,
+  reactive,
+  provide,
+  defineAsyncComponent,
+} from "vue";
 import Person from "./components/Person.js";
 import SinglePost from "./components/SinglePost.vue";
 import PropsValidation from "./components/PropsValidation.vue";
@@ -88,15 +95,15 @@ import UserName from "./components/UserName.vue";
 import MyButton from "./components/MyButton.vue";
 import BaseButton from "./components/baseButton.vue";
 import SlotComponent from "./components/SlotComponent.vue";
-import Posts from "./components/Posts.vue";
-
-
+// import Posts from "./components/Posts.vue";
+const Posts = defineAsyncComponent(() => import("./components/Posts.vue"));
+const showPost = ref(false);
 
 const message = ref("Hello Kelly Yoon");
 const updateMessage = () => {
-  message.value = "Updated Message From Parent"
-}
-provide('message', {message, updateMessage});
+  message.value = "Updated Message From Parent";
+};
+provide("message", { message, updateMessage });
 
 const firstName = ref("Kelly");
 const lastName = ref("Yoon");
