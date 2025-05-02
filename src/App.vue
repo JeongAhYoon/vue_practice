@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Posts :message="message">
+    <Posts >
       
     </Posts>
     <!-- <SlotComponent v-slot="slotProps">
@@ -78,7 +78,7 @@
 //     }
 // }
 import CounterComponent from "./components/Counter.vue"; //change it locally
-import { onBeforeUpdate, onMounted, onUpdated, ref, reactive } from "vue";
+import { onBeforeUpdate, onMounted, onUpdated, ref, reactive, provide } from "vue";
 import Person from "./components/Person.js";
 import SinglePost from "./components/SinglePost.vue";
 import PropsValidation from "./components/PropsValidation.vue";
@@ -90,7 +90,14 @@ import BaseButton from "./components/baseButton.vue";
 import SlotComponent from "./components/SlotComponent.vue";
 import Posts from "./components/Posts.vue";
 
-const message = "Hello Kelly Yoon";
+
+
+const message = ref("Hello Kelly Yoon");
+const updateMessage = () => {
+  message.value = "Updated Message From Parent"
+}
+provide('message', {message, updateMessage});
+
 const firstName = ref("Kelly");
 const lastName = ref("Yoon");
 const showCounter = ref(true);

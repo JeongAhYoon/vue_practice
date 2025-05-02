@@ -1,9 +1,9 @@
 <template>
     <div>Posts Component</div>
-    <SinglePosts :message="message" />
+    <SinglePosts />
 </template>
 
 <script setup>
 import SinglePosts from './SinglePosts.vue';
-defineProps(['message']);
+
 </script>
