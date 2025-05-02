@@ -1,5 +1,8 @@
 <template>
   <div>
+    <Posts :message="message">
+      
+    </Posts>
     <!-- <SlotComponent v-slot="slotProps">
       <div>Hello World</div>
       <div>{{slotProps.text}}</div>
@@ -10,24 +13,24 @@
     >
 
     <SlotComponent /> -->
-    <SlotComponent>
-      <template v-slot:header="headerProps">
+    <!-- <SlotComponent> -->
+      <!-- <template v-slot:header="headerProps">
         <h1>Header Content</h1>
         <div>Message: {{headerProps.message}}</div>
       </template>
       <template v-slot:default="mainProps">
         <div>Main Content</div>
         <div>Message: {{mainProps.message}}</div>
-      </template>
+      </template> -->
       <!-- <template>
         <div>Main Content</div>
       </template>
       <div>Main Content</div> -->
-      <template #footer="footerProps">
+      <!-- <template #footer="footerProps">
         <div>Footer Content</div>
         <div>Message: {{footerProps.message}}</div>
-      </template>
-    </SlotComponent>
+      </template> -->
+    <!-- </SlotComponent> -->
     <!-- <BaseButton class="large" style="color: green" @click="onParentClick" /> -->
     <!-- <MyButton class="large" style="color: green" @click="onParentClick" />
     <UserName v-model:firstName="firstName" v-model:lastName="lastName"/>
@@ -85,6 +88,9 @@ import UserName from "./components/UserName.vue";
 import MyButton from "./components/MyButton.vue";
 import BaseButton from "./components/baseButton.vue";
 import SlotComponent from "./components/SlotComponent.vue";
+import Posts from "./components/Posts.vue";
+
+const message = "Hello Kelly Yoon";
 const firstName = ref("Kelly");
 const lastName = ref("Yoon");
 const showCounter = ref(true);
