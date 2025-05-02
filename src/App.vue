@@ -1,7 +1,8 @@
 <template>
   <div>
-    <Posts v-if="showPost"> </Posts>
-    <div><button @click.prevent="showPost = !showPost">Show Posts</button></div>
+    <MouseTracker />
+    <!-- <Posts v-if="showPost"> </Posts>
+    <div><button @click.prevent="showPost = !showPost">Show Posts</button></div> -->
 
     <!-- <SlotComponent v-slot="slotProps">
       <div>Hello World</div>
@@ -96,6 +97,7 @@ import MyButton from "./components/MyButton.vue";
 import BaseButton from "./components/baseButton.vue";
 import SlotComponent from "./components/SlotComponent.vue";
 import LoadingComponent from "./components/LoadingComponent.vue";
+import MouseTracker from "./components/MouseTracker.vue";
 // import Posts from "./components/Posts.vue";
 const Posts = defineAsyncComponent({
   // loader: () => import("./components/Posts.vue"),
