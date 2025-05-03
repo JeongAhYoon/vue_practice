@@ -2,7 +2,7 @@
   <div>
     <button @click="show = !show">Toggle</button>
   </div>
-  <Transition enter-active-class="bounce-active" leace-active-class="leave-active">
+  <Transition enter-active-class="animate__animated animate__tada" leave-active-class="animate__animated animate__bounce">
     <div v-if="show" style="text-align: center">Transition Example</div>
   </Transition>
 </template>
