@@ -1,84 +1,35 @@
 <template>
-  <div>
-    <button @click="show = !show">Toggle</button>
-  </div>
-  <Transition
-    @before-enter="onBeforeEnter"
-    @enter="onEnter"
-    @after-enter="onAfterEnter"
-    @before-leave="onBeforeLeave"
-    @leave="onLeave"
-    @after-leave="onAfterLeave"
-
-  >
-    <div v-if="show" style="text-align: center">Transition Example</div>
+  <button @click="loadCompA">Comp A</button>
+  <button @click="loadCompB">Comp B</button>
+  <Transition mode="out-in" appear> 
+    <component :is="activeComponentName" />
   </Transition>
 </template>
 
 <script setup>
 import { ref, Transition } from "vue";
-
+import CompA from "./CompA.vue";
+import CompB from "./CompB.vue";
+const activeComponentName = ref(CompA);
+const loadCompA = () => activeComponentName.value = CompA;
+const loadCompB = () => activeComponentName.value = CompB;
 const show = ref(true);
-
-const onBeforeEnter = (el) => {
-  console.log('on before enter', el)
-};
-const onEnter = (el, done) => {
-  const animate = el.animate([{transform: 'scale(0)'}, {}],{duration: 1000})
-  //done();
-  animate.onfinish = () => {
-    done();
-  }
-};
-const onAfterEnter = (el) => {};
-
-const onBeforeLeave = (el) => {};
-const onLeave = (el, done) => {
-  const animate = el.animate([{ transform: 'scale(1)', opacity: 1 },
-  { transform: 'scale(0)', opacity: 0 }],{ duration: 500, easing: 'ease-in' })
-  //done();
-  animate.onfinish = () => {
-    done();
-  }
-};
-const onAfterLeave = (el) => {};
-
-
+const docState = ref("edit");
 </script>
 
 <style scoped>
-.bounce-active {
-  animation: bounce-in 5s;
+.v-enter-from {
+  transform: translateY(-30px);
+  opacity: 0;
 }
 
-.leave-active {
-  animation: bounce-in 0.8s reverse;
+.v-leave-to {
+  transform: translateY(30px);
+  opacity: 0;
 }
 
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.25);
-  }
-  100% {
-    transform: scale(1);
-  }
+.v-enter-active,
+.v-leave-active {
+  transition: all 1s;
 }
 </style>
-
-<!-- 
-transition의 단계
-
-v-enter-from
-v-enter-to
-v-enter-active
-
-v-leave-from
-v-leave-to
-v-leave-active
-
-
-
--->
