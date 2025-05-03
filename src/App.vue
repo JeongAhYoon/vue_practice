@@ -1,8 +1,6 @@
 <template>
   <div>
-  <Suspense>
     <PostComponent />
-  </Suspense>
     <!-- <MouseTracker /> -->
     <!-- <Posts v-if="showPost"> </Posts>
     <div><button @click.prevent="showPost = !showPost">Show Posts</button></div> -->

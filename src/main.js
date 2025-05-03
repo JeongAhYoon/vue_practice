@@ -16,6 +16,12 @@ import WatchEffectComponent from './components/WatchEffectComponent.vue';
 //globally.. access anywhere in the app
 //we can chain
 const app = createApp(App);
+app.directive('focus', {
+    mounted(el) {
+      el.focus();
+      el.style.borderColor = 'blue';
+    }
+  });
 app.provide('main', 'message from main');
 app.component('TemplateSyntax', TemplateSyntax);
 app.component('ComputedComponent', ComputedComponent);
