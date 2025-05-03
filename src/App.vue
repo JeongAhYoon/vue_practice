@@ -1,6 +1,7 @@
 <template>
   <div>
-    <TransitionComponent />
+    <TransitionList />
+    <!-- <TransitionComponent /> -->
     <!-- <PostComponent /> -->
     <!-- <MouseTracker /> -->
     <!-- <Posts v-if="showPost"> </Posts>
@@ -101,6 +102,7 @@ import SlotComponent from "./components/SlotComponent.vue";
 import LoadingComponent from "./components/LoadingComponent.vue";
 import MouseTracker from "./components/MouseTracker.vue";
 import TransitionComponent from "./components/TransitionComponent.vue";
+import TransitionList from "./components/TransitionList.vue";
 
 // import Posts from "./components/Posts.vue";
 const Posts = defineAsyncComponent({
