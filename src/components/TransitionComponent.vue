@@ -2,8 +2,8 @@
   <div>
     <button @click="show = !show">Toggle</button>
   </div>
-  <Transition name="fade">
-    <div v-if="show">Transition Example</div>
+  <Transition enter-active-class="bounce-active" leace-active-class="leave-active">
+    <div v-if="show" style="text-align: center">Transition Example</div>
   </Transition>
 </template>
 
@@ -14,32 +14,25 @@ const show = ref(true);
 </script>
 
 <style scoped>
-.fade-enter-from {
-    opacity: 0;
+
+.bounce-active {
+  animation: bounce-in 5s
 }
 
-.fade-enter-to {
-    opacity: 1;
+.leave-active {
+  animation: bounce-in 0.8s reverse;
 }
 
-.fade-leave-to {
-  
-}
-
-.fade-enter-active {
-    transition: opacity 2s ease;
-}
-
-.fade-leave-from {
-    opacity: 1;
-}
-
-.fade-leave-to {
-    opacity: 0;
-}
-
-.fade-leave-active {
-  transition: opacity 0.5s ease;
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
 
