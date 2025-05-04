@@ -6,10 +6,12 @@ import NotFound from './pages/NotFound.vue';
 import About from './pages/About.vue';
 import Home from './pages/Home.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
+import Posts from './pages/Posts.vue';
 
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
+  { path: '/posts', component: Posts },
   { path: '/:pathMath(.*)', component: NotFound },
 ];
 
