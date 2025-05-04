@@ -8,18 +8,23 @@ import Home from './pages/Home.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Posts from './pages/Posts.vue';
 import SinglePost from './pages/SinglePost.vue';
+import PostComponent from './pages/PostComponent.vue';
+import ProductComponent from './pages/ProductComponent.vue';
 
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
   { path: '/posts', component: Posts },
+  { path: '/:productName+', component: ProductComponent },
+  { path: '/:postId(\\d+)', component: PostComponent },
   { path: '/posts/:id', component: SinglePost },
   { path: '/:pathMath(.*)', component: NotFound },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  // strict // 이거는 슬래시(/) 같은게 뒤에 들어있으면 무조건 오류나게 해줌..
 });
 const app = createApp(App);
 app.use(router);
