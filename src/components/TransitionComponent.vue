@@ -1,18 +1,21 @@
 <template>
   <button @click="loadCompA">Comp A</button>
   <button @click="loadCompB">Comp B</button>
-  <Transition mode="out-in" appear> 
-    <component :is="activeComponentName" />
+  <Transition mode="out-in" appear>
+    <!-- appear은 처음 디폴트 컴포넌트가 나올때부터 애니메이션 효과를 발생시키는 것  -->
+    <keep-alive>
+      <component :is="activeComponentName" />
+    </keep-alive>
   </Transition>
 </template>
 
 <script setup>
-import { ref, Transition } from "vue";
+import { ref, shallowRef, Transition } from "vue";
 import CompA from "./CompA.vue";
 import CompB from "./CompB.vue";
-const activeComponentName = ref(CompA);
-const loadCompA = () => activeComponentName.value = CompA;
-const loadCompB = () => activeComponentName.value = CompB;
+const activeComponentName = shallowRef(CompA);
+const loadCompA = () => (activeComponentName.value = CompA);
+const loadCompB = () => (activeComponentName.value = CompB);
 const show = ref(true);
 const docState = ref("edit");
 </script>
@@ -30,6 +33,6 @@ const docState = ref("edit");
 
 .v-enter-active,
 .v-leave-active {
-  transition: all 1s;
+  transition: all 0.2s;
 }
 </style>

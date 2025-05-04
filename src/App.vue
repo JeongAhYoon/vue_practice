@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TransitionList />
-    <!-- <TransitionComponent /> -->
+    <!-- <TransitionList /> -->
+    <TransitionComponent />
     <!-- <PostComponent /> -->
     <!-- <MouseTracker /> -->
     <!-- <Posts v-if="showPost"> </Posts>
