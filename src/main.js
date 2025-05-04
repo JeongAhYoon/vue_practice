@@ -2,36 +2,22 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
-//import Counter from './components/Counter.vue'
-import TemplateSyntax from './components/TemplateSyntax.vue';
-import ComputedComponent from './components/ComputedComponent.vue';
-import ClassComponent from './components/ClassComponent.vue';
-import StyleComponent from './components/StyleComponent.vue';
-import ConditionalComponent from './components/ConditionalComponent.vue'
-import ListRendering from './components/ListRendering.vue';
-import EventHandling from './components/EventHandling.vue';
-import FormInput from './components/FormInput.vue';
-import WatchComponent from './components/WatchComponent.vue';
-import WatchEffectComponent from './components/WatchEffectComponent.vue';
-//globally.. access anywhere in the app
-//we can chain
+import NotFound from './pages/NotFound.vue';
+import About from './pages/About.vue';
+import Home from './pages/Home.vue';
+import { createRouter, createWebHashHistory } from 'vue-router';
+
+const routes = [
+  { path: '/', component: Home },
+  { path: '/about', component: About },
+  { path: '/:pathMath(.*)', component: NotFound },
+];
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes
+});
 const app = createApp(App);
-app.directive('focus', {
-    mounted(el) {
-      el.focus();
-      el.style.borderColor = 'blue';
-    }
-  });
-app.provide('main', 'message from main');
-app.component('TemplateSyntax', TemplateSyntax);
-app.component('ComputedComponent', ComputedComponent);
-app.component('ClassComponent', ClassComponent);
-app.component('StyleComponent', StyleComponent);
-app.component('ConditionalComponent', ConditionalComponent);
-app.component('ListRendering', ListRendering);
-app.component('EventHandling', EventHandling);
-app.component('FormInput', FormInput);
-app.component('WatchComponent', WatchComponent);
-app.component('WatchEffectComponent', WatchEffectComponent);
+app.use(router);
 app.mount('#app');
 
