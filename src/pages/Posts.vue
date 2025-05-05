@@ -17,25 +17,30 @@
             <td>{{ post.title }}</td>
             <td>{{ post.body }}</td>
             <td>
-              <router-link :to="{ name:'singlePost', params: {id: post.id} }"
+              <!-- <router-link :to="{ name: 'singlePost', params: { id: post.id } }"
                 >View Post</router-link
-              >
+              > -->
+              <button @click="onPostClick(post.id)">View Post</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="col-md-4">
-        <router-view></router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 const posts = ref([]);
-
+const router = useRouter();
+const onPostClick = (postId) => {
+    router.push({name: 'singlePost', params: { id: postId } });
+};
 const fetchPosts = async () => {
   try {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
