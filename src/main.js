@@ -10,15 +10,19 @@ import Posts from "./pages/Posts.vue";
 import SinglePost from "./pages/SinglePost.vue";
 import PostComponent from "./pages/PostComponent.vue";
 import ProductComponent from "./pages/ProductComponent.vue";
+import LeftSideBar from "./components/LeftSideBar.vue";
+import RightSideBar from "./components/RightSideBar.vue";
+import Header from "./components/HeaderComponent.vue";
+//import RightSideBar from "./components/RightSideBar.vue";
 
 const routes = [
-  { path: "/", component: Home },
-  { path: "/about", component: About },
+  { path: "/", components: { default: Home, LeftSideBar, RightSideBar, Header} },
+  { path: "/about", components: { default: About, LeftSideBar: RightSideBar, RightSideBar: LeftSideBar, Header } },
   {
     path: "/post",
     name: "posts",
-    component: Posts,
-    children: [{ path: ":id", name:'singlePost', component: SinglePost }],
+    components: { default: Posts, Header},
+    children: [{ path: ":id", name: "singlePost", component: SinglePost }],
   },
   { path: "/:productName+", component: ProductComponent },
   { path: "/:postId(\\d+)", component: PostComponent },

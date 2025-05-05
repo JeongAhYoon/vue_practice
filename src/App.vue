@@ -1,19 +1,22 @@
-<script setup >
-import HeaderComponent from './components/HeaderComponent.vue';
-
-</script>
-
 <template>
-<HeaderComponent/>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <router-view></router-view>
+   <router-view name="Header"></router-view>
+
+  <div class="container">
+    <div class="row">
+      <router-view name="LeftSideBar" class="col-md-2"></router-view>
+
+      <div class="col-md-8">
+        <router-view></router-view>
+      </div>
+
+      <router-view name="RightSideBar" class="col-md-2"></router-view>
     </div>
   </div>
-</div>
 </template>
 
+<script setup>
+import HeaderComponent from "./components/HeaderComponent.vue";
+</script>
 
 <style scoped>
 .link {
