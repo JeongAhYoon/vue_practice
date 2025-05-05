@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 const post = ref(null);
 const route = useRoute();
@@ -26,6 +26,8 @@ const getPost = async () => {
 
 };
 
+// watch( () => route.params, getPost);
+watchEffect(getPost);// watchEffect는 안에 있는 parameter들이 바뀌면 저절로 그 콜백 함수가 실행된다는 점이 다르다.그리고 {immediate:true} 없어도 됨.
 onMounted(() =>{
     getPost();
 })

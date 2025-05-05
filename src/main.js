@@ -14,10 +14,9 @@ import ProductComponent from './pages/ProductComponent.vue';
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
-  { path: '/posts', component: Posts },
+  { path: '/posts', component: Posts, children: [ { path: ':id', component: SinglePost },]},
   { path: '/:productName+', component: ProductComponent },
   { path: '/:postId(\\d+)', component: PostComponent },
-  { path: '/posts/:id', component: SinglePost },
   { path: '/:pathMath(.*)', component: NotFound },
 ];
 
