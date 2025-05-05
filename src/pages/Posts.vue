@@ -17,7 +17,7 @@
             <td>{{ post.title }}</td>
             <td>{{ post.body }}</td>
             <td>
-              <router-link :to="{ path: `/posts/${post.id}` }"
+              <router-link :to="{ name:'singlePost', params: {id: post.id} }"
                 >View Post</router-link
               >
             </td>
