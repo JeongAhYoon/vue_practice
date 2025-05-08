@@ -13,16 +13,18 @@ import ProductComponent from "./pages/ProductComponent.vue";
 import LeftSideBar from "./components/LeftSideBar.vue";
 import RightSideBar from "./components/RightSideBar.vue";
 import Header from "./components/HeaderComponent.vue";
+import SearchUser from "./pages/SearchUser.vue";
 //import RightSideBar from "./components/RightSideBar.vue";
 
 const routes = [
-  { path: "/", components: { default: Home, LeftSideBar, RightSideBar, Header} },
-  { path: "/about", components: { default: About, LeftSideBar: RightSideBar, RightSideBar: LeftSideBar, Header } },
+  { path: "/", component: Home, props: {name: "Kelly Developer"} },
+  { path: "/search", component: SearchUser, props:(route) => ({query: route.query.q}) } ,
+  { path: "/about/:id", components: { default: About, LeftSideBar: RightSideBar, RightSideBar: LeftSideBar, Header}, props: {default: true, RightSideBar: false, LeftSideBar: false} },
   {
     path: "/post",
     name: "posts",
     components: { default: Posts, Header},
-    children: [{ path: ":id", name: "singlePost", component: SinglePost }],
+    children: [{ path: ":id", name: "singlePost", component: SinglePost, props: true }],
   },
   { path: "/:productName+", component: ProductComponent },
   { path: "/:postId(\\d+)", component: PostComponent },
