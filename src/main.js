@@ -17,11 +17,18 @@ import SearchUser from "./pages/SearchUser.vue";
 //import RightSideBar from "./components/RightSideBar.vue";
 
 const routes = [
-  { path: "/", component: Home, props: { name: "Kelly Developer" } },
+  { path: "/", components: { default: Header }, props: { name: "Kelly Developer" }, 
+  
+  // beforeEnter(to, from) {
+  //   console.log("before Enter");
+  // }
+  beforeEnter: [auth1, auth2]
+},
   {
     path: "/search",
     component: SearchUser,
     props: (route) => ({ query: route.query.q }),
+    
   },
   {
     path: "/about/:id",
@@ -46,6 +53,20 @@ const routes = [
   { path: "/:pathMath(.*)", component: NotFound },
 ];
 
+function auth1(to, from) {
+
+  console.log("auth1");
+  // return true;
+  return false;
+}
+
+function auth2(to, from) {
+  console.log("auth2");
+  return true;
+}
+
+
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
@@ -67,6 +88,7 @@ function authAccess(to) {
 }
 
 router.beforeEach(async (to, from, next) => {
+  console.log('before Each');
   // //next(false); // 화면이 아예 출력이 안됨. Path는 그대로 있음
   // //next(true); //넘어갈수 있게 해주는 것것
   // const hasAccess = await authAccess(to);
@@ -76,7 +98,7 @@ router.beforeEach(async (to, from, next) => {
   next(true);
 });
 
-
+//this would be called whenever goint to another route
 router.beforeResolve(async (to) => {
   if (to.path === "/articles") {
     await authAccess(to);
@@ -86,7 +108,11 @@ router.beforeResolve(async (to) => {
  
 });
 
-
+//afterEach: it doesn't stop the nevigation
+//this does not affect the navigation
+router.afterEach((to, from) => {
+// console.log("afterEach");
+});
 
 
 const app = createApp(App);
