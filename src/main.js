@@ -67,13 +67,27 @@ function authAccess(to) {
 }
 
 router.beforeEach(async (to, from, next) => {
-  //next(false); // 화면이 아예 출력이 안됨. Path는 그대로 있음
-  //next(true); //넘어갈수 있게 해주는 것것
-  const hasAccess = await authAccess(to);
-  // if (!hasAccess) next("/notfound");
-  if (!hasAccess) next({ path: '/notfound' });
-  else next(true);
+  // //next(false); // 화면이 아예 출력이 안됨. Path는 그대로 있음
+  // //next(true); //넘어갈수 있게 해주는 것것
+  // const hasAccess = await authAccess(to);
+  // // if (!hasAccess) next("/notfound");
+  // if (!hasAccess) next({ path: "/notfound" });
+  // else next(true);
+  next(true);
 });
+
+
+router.beforeResolve(async (to) => {
+  if (to.path === "/articles") {
+    await authAccess(to);
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    app.provide('postsData', await response.json());
+  }
+ 
+});
+
+
+
 
 const app = createApp(App);
 app.use(router);

@@ -33,13 +33,13 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { inject, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const posts = ref([]);
 const router = useRouter();
 const onPostClick = (postId) => {
-    router.push({name: 'singlePost', params: { id: postId } });
+  router.push({ name: "singlePost", params: { id: postId } });
 };
 const fetchPosts = async () => {
   try {
@@ -51,6 +51,6 @@ const fetchPosts = async () => {
 };
 
 onMounted(() => {
-  fetchPosts();
+  posts.value = inject('postsData');
 });
 </script>
