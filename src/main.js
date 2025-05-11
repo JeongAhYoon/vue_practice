@@ -57,24 +57,24 @@ function authAccess(to) {
   console.log("accessing");
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (to.path.includes("articles")||to.path.includes('notfound')) {
+      if (to.path.includes("articles") || to.path.includes("notfound")) {
         resolve(true);
       } else {
-        resolve(false)
+        resolve(false);
       }
     }, 2000);
   });
 }
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to, from, next) => {
+  //next(false); // 화면이 아예 출력이 안됨. Path는 그대로 있음
+  //next(true); //넘어갈수 있게 해주는 것것
+  const hasAccess = await authAccess(to);
+  // if (!hasAccess) next("/notfound");
+  if (!hasAccess) next({ path: '/notfound' });
+  else next(true);
+});
 
-const hasAccess = await authAccess(to);
-if(!hasAccess) return { path: '/notfound'};
-  //console.log('to',to);
-  //console.log('from', from);
-  //return false; // when you don't want to navigate. it will cancel the navigation
-  return true;
-}); // 이게 중간에 있으면 false때문에 계속 default navigation으로 가 버린다.
 const app = createApp(App);
 app.use(router);
 app.mount("#app");
