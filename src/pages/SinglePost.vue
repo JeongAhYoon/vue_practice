@@ -1,48 +1,55 @@
 <template>
   <div>Single Post {{ $route.params.id }}</div>
   <div v-if="post">
-    <div>{{post.id}}</div>
-    <h2>{{post.title}}</h2>
-    <div>{{post.body}}</div>
+    <div>{{ post.id }}</div>
+    <h2>{{ post.title }}</h2>
+    <div>{{ post.body }}</div>
   </div>
 
   <div>
     <!-- <router-link :to="{name: 'posts'}">Back</router-link> -->
-     <button @click="onBackClick">Back To Posts</button>
+    <button @click="onBackClick">Back To Posts</button>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, watch, watchEffect } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { onMounted, ref, watch, watchEffect } from "vue";
+import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 const post = ref(null);
 const route = useRoute();
 const router = useRouter();
 
 // const props = defineProps(['id']);
 const props = defineProps({
-    id: String
+  id: String,
 });
-console.log(props);
-console.log(route.params);
-const getPost = async () => {
-    try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${props.id}`);
-        post.value = await response.json();
-    }catch(e) {
-        console.log(e);
-    }
 
+const getPost = async (id) => {
+  console.log(props);
+  console.log(id);
+  try {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/posts/${id}`
+    );
+    post.value = await response.json();
+  } catch (e) {
+    console.log(e);
+  }
 };
 const onBackClick = () => {
-    // router.push('/post');
-    // router.push({ path: '/post'});
-    //  router.push({name: 'posts'});
-    router.go(-1);
-}
+  // router.push('/post');
+  // router.push({ path: '/post'});
+  //  router.push({name: 'posts'});
+  router.go(-1);
+};
 // watch( () => route.params, getPost);
-watchEffect(getPost);// watchEffect는 안에 있는 parameter들이 바뀌면 저절로 그 콜백 함수가 실행된다는 점이 다르다.그리고 {immediate:true} 없어도 됨.
-onMounted(() =>{
-    getPost();
-})
+// watchEffect(getPost);// watchEffect는 안에 있는 parameter들이 바뀌면 저절로 그 콜백 함수가 실행된다는 점이 다르다.그리고 {immediate:true} 없어도 됨.
+
+getPost(props.id);
+
+//only when para changes this would be fired.
+onBeforeRouteUpdate((to, from) => {
+  console.log("on before route update");
+  getPost(to.params.id);
+});
 </script>

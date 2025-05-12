@@ -32,12 +32,26 @@
   </div>
 </template>
 
+<script>
+export default {
+  beforeRouteEnter(to, from) {
+    console.log('beforeRouteEnter');
+  },
+};
+</script>
 <script setup>
 import { inject, onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
+import { onBeforeRouteLeave, useRouter } from "vue-router";
 
 const posts = ref([]);
 const router = useRouter();
+
+// function checkForAccess() {
+//   router.push({ path: "/" });
+// }
+
+// checkForAccess();
+
 const onPostClick = (postId) => {
   router.push({ name: "singlePost", params: { id: postId } });
 };
@@ -51,6 +65,10 @@ const fetchPosts = async () => {
 };
 
 onMounted(() => {
-  posts.value = inject('postsData');
+  posts.value = inject("postsData");
 });
+
+onBeforeRouteLeave((to, from) => {
+  console.log("onbeforeRouteLeave")
+})
 </script>

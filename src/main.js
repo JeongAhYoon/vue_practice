@@ -56,8 +56,8 @@ const routes = [
 function auth1(to, from) {
 
   console.log("auth1");
-  // return true;
-  return false;
+  return true;
+  //return false;
 }
 
 function auth2(to, from) {
@@ -100,7 +100,7 @@ router.beforeEach(async (to, from, next) => {
 
 //this would be called whenever goint to another route
 router.beforeResolve(async (to) => {
-  if (to.path === "/articles") {
+  if (to.path.includes("articles")) {
     await authAccess(to);
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
     app.provide('postsData', await response.json());
