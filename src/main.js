@@ -14,10 +14,11 @@ import LeftSideBar from "./components/LeftSideBar.vue";
 import RightSideBar from "./components/RightSideBar.vue";
 import Header from "./components/HeaderComponent.vue";
 import SearchUser from "./pages/SearchUser.vue";
+import { createPinia } from "pinia";
 //import RightSideBar from "./components/RightSideBar.vue";
 
 const routes = [
-  { path: "/", components: { default: Header }, props: { name: "Kelly Developer" }, 
+  { path: "/", components: { default: Home, Header }, props: { name: "Kelly Developer" }, 
   
   // beforeEnter(to, from) {
   //   console.log("before Enter");
@@ -31,7 +32,7 @@ const routes = [
     
   },
   {
-    path: "/about/:id",
+    path: "/about",
     components: {
       default: About,
       LeftSideBar: RightSideBar,
@@ -114,7 +115,8 @@ router.afterEach((to, from) => {
 // console.log("afterEach");
 });
 
-
+const pinia = createPinia();
 const app = createApp(App);
 app.use(router);
+app.use(pinia);
 app.mount("#app");
