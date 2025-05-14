@@ -18,18 +18,20 @@ import { createPinia } from "pinia";
 //import RightSideBar from "./components/RightSideBar.vue";
 
 const routes = [
-  { path: "/", components: { default: Home, Header }, props: { name: "Kelly Developer" }, 
-  
-  // beforeEnter(to, from) {
-  //   console.log("before Enter");
-  // }
-  beforeEnter: [auth1, auth2]
-},
+  {
+    path: "/",
+    components: { default: Home, Header },
+    props: { name: "Kelly Developer" },
+
+    // beforeEnter(to, from) {
+    //   console.log("before Enter");
+    // }
+    beforeEnter: [auth1, auth2],
+  },
   {
     path: "/search",
     component: SearchUser,
     props: (route) => ({ query: route.query.q }),
-    
   },
   {
     path: "/about",
@@ -55,7 +57,6 @@ const routes = [
 ];
 
 function auth1(to, from) {
-
   console.log("auth1");
   return true;
   //return false;
@@ -65,8 +66,6 @@ function auth2(to, from) {
   console.log("auth2");
   return true;
 }
-
-
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -89,7 +88,7 @@ function authAccess(to) {
 }
 
 router.beforeEach(async (to, from, next) => {
-  console.log('before Each');
+  console.log("before Each");
   // //next(false); // 화면이 아예 출력이 안됨. Path는 그대로 있음
   // //next(true); //넘어갈수 있게 해주는 것것
   // const hasAccess = await authAccess(to);
@@ -104,15 +103,14 @@ router.beforeResolve(async (to) => {
   if (to.path.includes("articles")) {
     await authAccess(to);
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-    app.provide('postsData', await response.json());
+    app.provide("postsData", await response.json());
   }
- 
 });
 
 //afterEach: it doesn't stop the nevigation
 //this does not affect the navigation
 router.afterEach((to, from) => {
-// console.log("afterEach");
+  // console.log("afterEach");
 });
 
 const pinia = createPinia();

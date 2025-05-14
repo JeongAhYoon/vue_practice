@@ -2,24 +2,40 @@
 <div>Home Page</div>
 <div>Counter: {{ count }}</div>
 <div>DoubleCount: {{ doubleCount }}</div>
-<button @click="increment()">Incremenet</button>
+<!-- <div>DoubleValue: {{ doubleValue }}</div> -->
+<button @click="add()">Incremenet</button>
 </template>
 
-<script setup>
+<script>
 import { useCounterStore } from '@/store/countner';
-import { storeToRefs } from 'pinia';
-import { computed, ref, watchEffect } from 'vue';
+import { mapActions, mapState, mapWritableState } from 'pinia';
 
-const props = defineProps(['name']);
-const counter = useCounterStore(); // store will be created when this is called
+//how to use option API for Piana
 
-//const { count, doubleCount } = storeToRefs(counter);
-const count = computed(() => counter.count);
-const doubleCount = computed(() => counter.doubleCount);
+// export default {
+//     computed: {
+//         ...mapState(useCounterStore, ['count', 'doubleCount'])
+//     }, 
+//     methods: {
+//         ...mapActions(useCounterStore, ['increment'])
+//     }
+// };
 
-const {increment} = counter;
+export default {
+    computed: {
+        // ...mapState(useCounterStore, {
+        //     count: 'count',
+        //     doubleCount: 'doubleCount',
+        //     doubleValue: state => state.count + 1
+        // })
+        ...mapWritableState(useCounterStore, ['count', 'doubleCount'])
+    }, 
+    methods: {
+        ...mapActions(useCounterStore, ['increment']),
+        add() {
+            this.count++;
+        }
+    }
+};
 
-
-
-console.log('home', props);
 </script>
