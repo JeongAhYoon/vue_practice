@@ -3,7 +3,9 @@
 <div>Counter: {{ count }}</div>
 <div>DoubleCount: {{ doubleCount }}</div>
 <!-- <div>DoubleValue: {{ doubleValue }}</div> -->
+ <div>Name: {{name}} </div>
 <button @click="add()">Incremenet</button>
+<button @click="$reset()">Reset</button>
 </template>
 
 <script>
@@ -28,12 +30,25 @@ export default {
         //     doubleCount: 'doubleCount',
         //     doubleValue: state => state.count + 1
         // })
-        ...mapWritableState(useCounterStore, ['count', 'doubleCount'])
+        ...mapWritableState(useCounterStore, ['count', 'doubleCount','name'])
     }, 
+    mounted() {
+        this.$subscribe((mutation, state) => {
+            console.log(mutation),
+            console.log(state)
+        });
+    },
+
     methods: {
-        ...mapActions(useCounterStore, ['increment']),
+        ...mapActions(useCounterStore, ['increment', '$reset', '$patch', '$subscribe']), //subscribe: store에서 state가 바뀔떄마다 자동으로 실행되는 콜백을 등록하는 메서드
         add() {
-            this.count++;
+            this.$patch({
+                count: this.count + 1,
+                name: Math.random() + 'asdf'
+
+            });// multple mutations in one mutation.. we use $patch
+            // this.count++;
+            // this.name = Math.random() + 'asdf';
         }
     }
 };
