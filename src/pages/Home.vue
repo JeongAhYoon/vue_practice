@@ -4,6 +4,8 @@
   <div>DoubleCount: {{ doubleCount }}</div>
   <!-- <div>DoubleValue: {{ doubleValue }}</div> -->
   <div>Name: {{ name }}</div>
+  <div>doubleCountPlusOne: {{(doubleCountPlusOne(100))}} </div>
+  <div>User with 1: {{ getUserById(1).name }}</div>
   <button @click="add()">Incremenet</button>
   <button @click="counter.$reset()">Reset</button>
 </template>
@@ -59,7 +61,7 @@ import { useCounterStore } from '@/store/countner';
 import { mapActions, mapState, mapWritableState, storeToRefs } from 'pinia';
 
 const counter = useCounterStore();
-const {count, doubleCount, name} = storeToRefs(counter);
+const {count, doubleCount, name, doubleCountPlusOne, getUserById} = storeToRefs(counter);
 // composition API does not have $reset()
 //$subscrie
 counter.$subscribe((mutation, state) => {
